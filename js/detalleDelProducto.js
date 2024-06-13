@@ -31,47 +31,84 @@ const botonCarrito = document.querySelector("#idBotonCarrito");
 
 const agregarProductoAFavoritos = () => {
   const producto = productos.find((prod) => prod.id === idProducto);
-  const favoritosLocalStorage =
-    JSON.parse(localStorage.getItem("favoritos")) || [];
+  const usuarioSesionStorage =
+    JSON.parse(sessionStorage.getItem("usuario")) || "";
+  const usuariosLocalStorage =
+    JSON.parse(localStorage.getItem("usuarios")) || [];
+  /*   const favoritosLocalStorage =
+    JSON.parse(localStorage.getItem("favoritos")) || []; */
 
-  if (favoritosLocalStorage.length) {
-    const productoFiltrado = favoritosLocalStorage.find(
+  if (usuarioSesionStorage.favoritos.length) {
+    const productoFiltrado = usuarioSesionStorage.favoritos.find(
       (prod) => prod.id === producto.id
     );
-
+    console.log(productoFiltrado);
     if (productoFiltrado) {
       return alert("producto ya existe en favoritos");
     }
 
-    favoritosLocalStorage.push(producto);
-    localStorage.setItem("favoritos", JSON.stringify(favoritosLocalStorage));
+    usuarioSesionStorage.favoritos.push(producto);
+
+    const posicionDelUsuarioEnElArray = usuariosLocalStorage.findIndex(
+      (usuario) => usuario.id === usuarioSesionStorage.id
+    );
+
+    usuariosLocalStorage[posicionDelUsuarioEnElArray] = usuarioSesionStorage;
+
+    localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
+    sessionStorage.setItem("usuario", JSON.stringify(usuarioSesionStorage));
     alert("Producto Cargado en Favoritos");
   } else {
-    favoritosLocalStorage.push(producto);
-    localStorage.setItem("favoritos", JSON.stringify(favoritosLocalStorage));
+    usuarioSesionStorage.favoritos.push(producto);
+
+    const posicionDelUsuarioEnElArray = usuariosLocalStorage.findIndex(
+      (usuario) => usuario.id === usuarioSesionStorage.id
+    );
+
+    usuariosLocalStorage[posicionDelUsuarioEnElArray] = usuarioSesionStorage;
+    localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
     alert("Producto Cargado en Favoritos");
   }
 };
 
 const agregarProductoACarrito = () => {
   const producto = productos.find((prod) => prod.id === idProducto);
-  const carritoLocalStorage = JSON.parse(localStorage.getItem("carrito")) || [];
+  const usuarioSesionStorage =
+    JSON.parse(sessionStorage.getItem("usuario")) || "";
+  const usuariosLocalStorage =
+    JSON.parse(localStorage.getItem("usuarios")) || [];
+  /*   const favoritosLocalStorage =
+    JSON.parse(localStorage.getItem("favoritos")) || []; */
 
-  if (carritoLocalStorage.length) {
-    const productoFiltrado = carritoLocalStorage.find(
+  if (usuarioSesionStorage.carrito.length) {
+    const productoFiltrado = usuarioSesionStorage.carrito.find(
       (prod) => prod.id === producto.id
     );
-
+    console.log(productoFiltrado);
     if (productoFiltrado) {
-      return alert("producto ya existe en el Carrito");
+      return alert("producto ya existe en en el carrito");
     }
 
-    carritoLocalStorage.push(producto);
-    localStorage.setItem("carrito", JSON.stringify(carritoLocalStorage));
+    usuarioSesionStorage.carrito.push(producto);
+
+    const posicionDelUsuarioEnElArray = usuariosLocalStorage.findIndex(
+      (usuario) => usuario.id === usuarioSesionStorage.id
+    );
+
+    usuariosLocalStorage[posicionDelUsuarioEnElArray] = usuarioSesionStorage;
+
+    localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
+    sessionStorage.setItem("usuario", JSON.stringify(usuarioSesionStorage));
     alert("Producto Cargado en el Carrito");
   } else {
-    carritoLocalStorage.push(producto);
-    localStorage.setItem("carrito", JSON.stringify(carritoLocalStorage));
+    usuarioSesionStorage.carrito.push(producto);
+
+    const posicionDelUsuarioEnElArray = usuariosLocalStorage.findIndex(
+      (usuario) => usuario.id === usuarioSesionStorage.id
+    );
+
+    usuariosLocalStorage[posicionDelUsuarioEnElArray] = usuarioSesionStorage;
+    localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
     alert("Producto Cargado en el Carrito");
   }
 };

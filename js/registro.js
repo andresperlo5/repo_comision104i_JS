@@ -65,10 +65,13 @@ const registrarUsuario = (evento) => {
         login: false,
         role: "usuario",
         bloqueado: false,
+        carrito: [],
+        favoritos: [],
       };
 
       usuariosLocalStorage.push(nuevoUsuario);
       localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
+      alert("Registrado con exito");
     } else {
       alert("Las contraseñas no son iguales");
     }
