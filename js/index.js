@@ -1,4 +1,6 @@
 const divCards = document.getElementById("idDivCards");
+const divImagenDestacada = document.getElementById("idImagenDestacada");
+const imagenDestacada = JSON.parse(localStorage.getItem("imagenDestacada"));
 //const divCards = document.getElementsByClassName("classCards");
 //const divCards = document.getElementsByTagName("div");
 
@@ -15,6 +17,7 @@ const productos = [
       "Café de alta calidad, cultivado en las mejores fincas de Colombia.",
     imagen:
       "https://jumbo.vtexassets.com/arquivos/ids/680978/Cafe-Premier-clasico-frasco-170-g.jpg?v=638227939534700000",
+    destacado: false,
   },
   {
     id: 2,
@@ -23,6 +26,7 @@ const productos = [
     descripcion:
       "Té verde 100% orgánico, rico en antioxidantes y sin aditivos.",
     imagen: "te_verde_organico.jpg",
+    destacado: false,
   },
   {
     id: 3,
@@ -31,6 +35,7 @@ const productos = [
     descripcion:
       "Chocolate negro con 70% de cacao, ideal para los amantes del cacao puro.",
     imagen: "chocolate_negro_70.jpg",
+    destacado: false,
   },
   {
     id: 4,
@@ -39,6 +44,7 @@ const productos = [
     descripcion:
       "Mermelada artesanal hecha con fresas frescas y sin conservantes.",
     imagen: "mermelada_fresas.jpg",
+    destacado: false,
   },
   {
     id: 5,
@@ -47,6 +53,7 @@ const productos = [
     descripcion:
       "Aceite de oliva extra virgen, prensado en frío para conservar sus propiedades.",
     imagen: "aceite_oliva.jpg",
+    destacado: false,
   },
   {
     id: 6,
@@ -54,6 +61,7 @@ const productos = [
     precio: 7.9,
     descripcion: "Queso Gouda madurado, con un sabor suave y cremoso.",
     imagen: "queso_gouda.jpg",
+    destacado: false,
   },
   {
     id: 7,
@@ -62,6 +70,7 @@ const productos = [
     descripcion:
       "Pan integral hecho con harina de trigo integral y sin azúcares añadidos.",
     imagen: "pan_integral.jpg",
+    destacado: false,
   },
   {
     id: 8,
@@ -69,6 +78,7 @@ const productos = [
     precio: 9.99,
     descripcion: "Miel de abeja 100% pura, recolectada de colmenas naturales.",
     imagen: "miel_abeja.jpg",
+    destacado: false,
   },
   {
     id: 9,
@@ -76,6 +86,7 @@ const productos = [
     precio: 4.6,
     descripcion: "Cereal de avena integral, ideal para un desayuno saludable.",
     imagen: "cereal_avena.jpg",
+    destacado: false,
   },
   {
     id: 10,
@@ -83,10 +94,15 @@ const productos = [
     precio: 3.99,
     descripcion: "Jugo de naranja 100% natural, sin azúcares ni conservantes.",
     imagen: "jugo_naranja.jpg",
+    destacado: false,
   },
 ];
 
 localStorage.setItem("productos", JSON.stringify(productos));
+console.log(imagenDestacada);
+divImagenDestacada.innerHTML = imagenDestacada
+  ? ` <img src="${imagenDestacada}" class="card-img-top" alt="..." />`
+  : "";
 
 divCards.innerHTML = productos
   .map(

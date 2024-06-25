@@ -12,6 +12,15 @@ const productoFiltrado = productosLocalStorage.find(
   (producto) => producto.id === idProducto
 );
 
+/* const usuarioSessionStorage =
+  JSON.parse(sessionStorage.getItem("usuario")) || "";
+
+const productoExisteFav = usuarioSessionStorage.favoritos.find(
+  (producto) => producto.id === idProducto
+);
+
+console.log(productoExisteFav); */
+
 divDetalleProducto.innerHTML = `
   <div>
     <div class='w-25 justify-content-end'>
@@ -35,8 +44,14 @@ const agregarProductoAFavoritos = () => {
     JSON.parse(sessionStorage.getItem("usuario")) || "";
   const usuariosLocalStorage =
     JSON.parse(localStorage.getItem("usuarios")) || [];
-  /*   const favoritosLocalStorage =
-    JSON.parse(localStorage.getItem("favoritos")) || []; */
+
+  if (!usuarioSesionStorage) {
+    alert("Debes iniciar sesion.");
+    setTimeout(() => {
+      location.href = "../paginas/iniciar-sesion.html";
+    }, 1000);
+    return;
+  }
 
   if (usuarioSesionStorage.favoritos.length) {
     const productoFiltrado = usuarioSesionStorage.favoritos.find(
@@ -67,6 +82,7 @@ const agregarProductoAFavoritos = () => {
 
     usuariosLocalStorage[posicionDelUsuarioEnElArray] = usuarioSesionStorage;
     localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
+    sessionStorage.setItem("usuario", JSON.stringify(usuarioSesionStorage));
     alert("Producto Cargado en Favoritos");
   }
 };
@@ -77,8 +93,14 @@ const agregarProductoACarrito = () => {
     JSON.parse(sessionStorage.getItem("usuario")) || "";
   const usuariosLocalStorage =
     JSON.parse(localStorage.getItem("usuarios")) || [];
-  /*   const favoritosLocalStorage =
-    JSON.parse(localStorage.getItem("favoritos")) || []; */
+
+  if (!usuarioSesionStorage) {
+    alert("Debes iniciar sesion.");
+    setTimeout(() => {
+      location.href = "../paginas/iniciar-sesion.html";
+    }, 1000);
+    return;
+  }
 
   if (usuarioSesionStorage.carrito.length) {
     const productoFiltrado = usuarioSesionStorage.carrito.find(
@@ -109,6 +131,7 @@ const agregarProductoACarrito = () => {
 
     usuariosLocalStorage[posicionDelUsuarioEnElArray] = usuarioSesionStorage;
     localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
+    sessionStorage.setItem("usuario", JSON.stringify(usuarioSesionStorage));
     alert("Producto Cargado en el Carrito");
   }
 };

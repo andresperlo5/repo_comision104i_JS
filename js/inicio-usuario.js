@@ -38,7 +38,7 @@ const cerrarSesion = () => {
   );
 
   usuariosLocalStorage[posicionDelUsuarioEnElArray].login = false;
-  /*  sessionStorage.removeItem("usuario"); */
+  sessionStorage.removeItem("usuario");
   localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
 
   setTimeout(() => {

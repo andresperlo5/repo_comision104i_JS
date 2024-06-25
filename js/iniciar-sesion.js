@@ -44,8 +44,14 @@ const iniciarSesionUsuario = (evento) => {
     localStorage.setItem("usuarios", JSON.stringify(usuariosLocalStorage));
     sessionStorage.setItem("usuario", JSON.stringify(usuarioExiste));
 
+    if (usuarioExiste.bloqueado) {
+      return alert(
+        "Usuario Bloqueado. Comunicarse con el administrador de la pagina"
+      );
+    }
+
     if (usuarioExiste.role === "admin") {
-      location.href = "../paginas/home-admin.html";
+      location.href = "../paginas/inicio-admin.html";
     } else if (usuarioExiste.role === "usuario") {
       location.href = "../paginas/inicio-usuario.html";
     } else {
