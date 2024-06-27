@@ -1,6 +1,9 @@
 const cerrarSesionUsuario = document.getElementById("idCerrarSesionUsuario");
 const usuarioSessionStorage =
   JSON.parse(sessionStorage.getItem("usuario")) || "";
+const bodyHtml = document.getElementById("idBody");
+
+bodyHtml.classList.remove("d-none");
 
 const cerrarSesion = () => {
   const usuariosLocalStorage =

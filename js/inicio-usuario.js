@@ -5,6 +5,9 @@ const productosLocalStorage =
   JSON.parse(localStorage.getItem("productos")) || [];
 const divCards = document.getElementById("idDivCards");
 const cerrarSesionUsuario = document.getElementById("idCerrarSesionUsuario");
+const bodyHtml = document.getElementById("idBody");
+
+bodyHtml.classList.remove("d-none");
 
 divCards.innerHTML = productosLocalStorage
   .map(
